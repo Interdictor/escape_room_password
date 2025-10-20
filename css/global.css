@@ -18,64 +18,60 @@ body {
   font-optical-sizing: auto;
   font-style: normal;
   font-size: 2em;
+}
 
-  section {
-    display: flex;
-    flex-direction: column;
-    place-self: center;
-    place-content: center;
-    /* background-color: rgb(130, 109, 109); */
+section.hidden {
+  display: none;
+}
 
-    button {
-      background-color: var(--red);
-      color: var(--black);
-      border: none;
-      width: var(--width);
-      font-size: 0.6em;
-      padding: 15px;
-      border-radius: 0.2em;
-      cursor: pointer;
-      box-sizing: border-box;
-      
-      &:hover {
-        background-color: var(--lg-red);
-        color: var(--black);
-      }
-    }
+section {
+  display: flex;
+  flex-direction: column;
+  place-self: center;
+  place-content: center;
+  /* background-color: rgb(130, 109, 109); */
 
-    input {
-      background-color: var(--black); 
-      color: var(--red);
-      border: 2px solid var(--red);
-      font-size: 1em;
-      width: var(--width);
-      /* padding: 0.2em 0.5em; */
-      margin: 0.3em 0;
-      border-radius: 0.2em;
-      box-sizing: border-box;
-
-      &::placeholder {
-        color: var(--lg-grey);
-        opacity: 0.7;
-      }
-    }
-
-    span {
-      box-sizing: border-box;
-      margin: 0.1em 0;
-      width: var(--width);
-    }
-  }
-
-  section.hidden {
-    display: none;
-  }
-
-  section.visible {
+  &.visible {
     display: flex;
   }
 }
 
-/* section#timeRemaining {
-  display: none;
-} */
+button {
+  background-color: var(--red);
+  color: var(--black);
+  border: none;
+  width: var(--width);
+  font-size: 0.6em;
+  padding: 15px;
+  border-radius: 0.2em;
+  cursor: pointer;
+  box-sizing: border-box;
+  
+  &:hover {
+    background-color: var(--lg-red);
+    color: var(--black);
+  }
+}
+
+input {
+  background-color: var(--black); 
+  color: var(--red);
+  border: 2px solid var(--red);
+  font-size: 1em;
+  width: var(--width);
+  /* padding: 0.2em 0.5em; */
+  margin: 0.3em 0;
+  border-radius: 0.2em;
+  box-sizing: border-box;
+
+  &::placeholder {
+    color: var(--lg-grey);
+    opacity: 0.7;
+  }
+}
+
+span {
+  box-sizing: border-box;
+  margin: 0.1em 0;
+  width: var(--width);
+}
