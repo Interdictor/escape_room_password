@@ -1,0 +1,46 @@
+body {
+  background-color: #171717;
+  color: #d12626;
+  /* font-family: "Orbitron", sans-serif; */
+  font-family: "Roboto Mono", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-size: 2em;
+}
+
+.counter {
+  font-size: 5em;
+}
+
+.input-dark {
+  background-color: #171717;
+  color: #d12626;
+  border: 2px solid #d12626;
+  font-size: 1em;
+  width: 500px;
+  padding: 0.2em 0.5em;
+  margin-bottom: 0.3em;
+  border-radius: 0.2em;
+}
+
+.input-dark::placeholder {
+  color: #444;
+  opacity: 0.7;
+}
+
+
+.button-dark {
+  background-color: #d12626;
+  color: #171717;
+  border: none;
+  width: 530px;
+  font-size: 0.6em;
+  padding: 15px;
+  border-radius: 0.2em;
+  cursor: pointer;
+}
+
+.button-dark:hover {
+  background-color: #e75959;
+  color: #171717;
+}
