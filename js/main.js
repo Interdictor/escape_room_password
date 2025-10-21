@@ -3,6 +3,7 @@ import { CONFIG } from "../config/config.js";
 let countdownInterval
 let timeRemaining = CONFIG.available_time;
 let points;
+let teamName;
 
 function replaceLogo() {
   document.getElementById('main-logo').src = CONFIG.logo_url;
@@ -15,8 +16,9 @@ function confirmTeamName() {
   const welcomeMsg = document.getElementById('welcome-message');
   const timeRemaining = document.getElementById('timeRemaining');
 
-  const teamName = input.value.trim();
+  teamName = input.value.trim();
   if (teamName) {
+    saveTeam(teamName)
     section.classList.add('hidden');
     timeRemaining.classList.add('visible')
     // timeRemaining.textContent = teamName;
@@ -67,6 +69,7 @@ function hideUI() {
   submitButton.classList.add('hidden');
 
   navSection.classList.add('visible');
+  setTeamPoints(teamName, points)
   score.textContent = `score: ${points}`;
   // score.classList.add('visible');
 }
@@ -102,6 +105,24 @@ function checkPassword() {
       passwordInput.style.backgroundColor = '';
     }, 300);
   }
+}
+
+function saveTeam(teamName) {
+  const team = {
+    teamName,
+    points: 0,
+  }
+  localStorage.setItem(teamName, JSON.stringify(team))
+}
+
+function setTeamPoints(teamName, points) {
+  const teamString = localStorage.getItem(teamName)
+  const team = JSON.parse(teamString)
+  team.points = points
+  
+  // Save back to localStorage (convert to string again)
+  localStorage.setItem(teamName, JSON.stringify(team))
+  // team.points = points
 }
 
 const section = document.getElementById('teamForm');
