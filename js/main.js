@@ -34,7 +34,6 @@ function formatTime(seconds) {
 function serializeTimer() {
   // const section = document.getElementById('timeRemaining');
   const counter = document.getElementById('counter');
-
   counter.textContent = formatTime(CONFIG.available_time)
 }
 
@@ -48,7 +47,7 @@ function startCountdown() {
 
     if (timeRemaining <= 0) {
       clearInterval(countdownInterval);
-      console.log('Time is up!');
+      counter.textContent = 'YOU LOSE'
     }
   }, 1000);
 }
@@ -62,19 +61,19 @@ function checkPassword() {
   const isValid = validPasswords.includes(password)
 
   if (isValid) {
-    console.log('Hurrey for boobies!')
     clearInterval(countdownInterval);
+    counter.textContent = 'YOU WIN'
   } else {
-    console.log('Estás muerto perro')
     timeRemaining -= CONFIG.penalty_time; // Deduct 60 seconds as penalty
     
     if (timeRemaining <= 0) {
       timeRemaining = 0
-      // counter.textContent = formatTime(timeRemaining)
-    };
-    
-    counter.textContent = formatTime(timeRemaining);
-    
+      counter.textContent = 'YOU LOSE'
+      clearInterval(countdownInterval);
+    } else {
+      counter.textContent = formatTime(timeRemaining);
+    }
+
     passwordInput.value = '';
     passwordInput.style.backgroundColor = '#ffcccc'; // Visual feedback
     setTimeout(() => {
