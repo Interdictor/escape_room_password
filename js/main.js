@@ -2,6 +2,7 @@ import { CONFIG } from "../config/config.js";
 
 let countdownInterval
 let timeRemaining = CONFIG.available_time;
+let points;
 
 function replaceLogo() {
   document.getElementById('main-logo').src = CONFIG.logo_url;
@@ -47,9 +48,27 @@ function startCountdown() {
 
     if (timeRemaining <= 0) {
       clearInterval(countdownInterval);
-      counter.textContent = 'YOU LOSE'
+      counter.textContent = 'YOU LOSE';
+      points = timeRemaining;
     }
   }, 1000);
+}
+
+function hideUI() {
+  const counterSection = document.getElementById('timeRemaining');
+  const span = counterSection.querySelector('span');
+  const submitButton = counterSection.querySelector('button');
+  const passwordInput = document.getElementById('password-input');
+  const navSection = document.getElementById('navSection');
+  const score = document.getElementById('score');
+
+  span.classList.add('hidden');
+  passwordInput.classList.add('hidden');
+  submitButton.classList.add('hidden');
+
+  navSection.classList.add('visible');
+  score.textContent = `score: ${points}`;
+  // score.classList.add('visible');
 }
 
 function checkPassword() {
@@ -57,12 +76,13 @@ function checkPassword() {
   const password = passwordInput.value.trim()
   const validPasswords = CONFIG.passwords;
   const counter = document.getElementById('counter');
-
   const isValid = validPasswords.includes(password)
 
   if (isValid) {
     clearInterval(countdownInterval);
-    counter.textContent = 'YOU WIN'
+    counter.textContent = 'PASSWORD CORRECT!'
+    points = timeRemaining;
+    hideUI()
   } else {
     timeRemaining -= CONFIG.penalty_time; // Deduct 60 seconds as penalty
     
@@ -70,6 +90,8 @@ function checkPassword() {
       timeRemaining = 0
       counter.textContent = 'YOU LOSE'
       clearInterval(countdownInterval);
+      hideUI()
+      points = timeRemaining
     } else {
       counter.textContent = formatTime(timeRemaining);
     }
@@ -91,4 +113,5 @@ const passwordButton = counterSection.querySelector('button')
 passwordButton.addEventListener('click', checkPassword)
 // function save
 
+const newGameButton = document.getElementById('')
 replaceLogo();

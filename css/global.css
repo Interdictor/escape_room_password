@@ -4,7 +4,7 @@ html {
   --red: #d12626;
   --black: #171717;
 
-  --width: 530px;
+  --width: 50vw;
 }
 
 body {
@@ -20,8 +20,18 @@ body {
   font-size: 2em;
 }
 
-section.hidden {
+header {
+  width: 100vw;
+  height: 10vh;
+  /* background-color: #e75959; */
+}
+
+.hidden {
   display: none;
+}
+
+.visible {
+  display: flex;
 }
 
 section {
@@ -29,6 +39,7 @@ section {
   flex-direction: column;
   place-self: center;
   place-content: center;
+  width: var(--width);
   /* background-color: rgb(130, 109, 109); */
 
   &.visible {
@@ -40,9 +51,10 @@ button {
   background-color: var(--red);
   color: var(--black);
   border: none;
-  width: var(--width);
+  width: 100%;
   font-size: 0.6em;
   padding: 15px;
+  margin: .3em 0;
   border-radius: 0.2em;
   cursor: pointer;
   box-sizing: border-box;
@@ -58,7 +70,7 @@ input {
   color: var(--red);
   border: 2px solid var(--red);
   font-size: 1em;
-  width: var(--width);
+  width: 100%;
   /* padding: 0.2em 0.5em; */
   margin: 0.3em 0;
   border-radius: 0.2em;
@@ -73,5 +85,6 @@ input {
 span {
   box-sizing: border-box;
   margin: 0.1em 0;
-  width: var(--width);
+  font-size: 2em;
+  width: 100%;
 }
