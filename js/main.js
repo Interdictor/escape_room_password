@@ -90,8 +90,8 @@ function checkPassword() {
       timeRemaining = 0
       counter.textContent = 'YOU LOSE'
       clearInterval(countdownInterval);
-      hideUI()
       points = timeRemaining
+      hideUI()
     } else {
       counter.textContent = formatTime(timeRemaining);
     }
