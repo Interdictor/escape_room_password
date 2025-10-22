@@ -88,7 +88,7 @@ function checkPassword() {
     hideUI()
   } else {
     timeRemaining -= CONFIG.penalty_time; // Deduct 60 seconds as penalty
-    
+
     if (timeRemaining <= 0) {
       timeRemaining = 0
       counter.textContent = 'YOU LOSE'
@@ -119,7 +119,7 @@ function setTeamPoints(teamName, points) {
   const teamString = localStorage.getItem(teamName)
   const team = JSON.parse(teamString)
   team.points = points
-  
+
   // Save back to localStorage (convert to string again)
   localStorage.setItem(teamName, JSON.stringify(team))
   // team.points = points
@@ -130,12 +130,12 @@ function resetGame() {
   if (countdownInterval) {
     clearInterval(countdownInterval);
   }
-  
+
   // Reset all variables to initial state
   timeRemaining = CONFIG.available_time;
   points = 0;
   teamName = null;
-  
+
   // Reset UI elements
   const teamFormSection = document.getElementById('teamForm');
   const timeRemainingSection = document.getElementById('timeRemaining');
@@ -146,23 +146,23 @@ function resetGame() {
   const score = document.getElementById('score');
   const span = timeRemainingSection.querySelector('span');
   const submitButton = timeRemainingSection.querySelector('button');
-  
+
   // Clear inputs
   teamNameInput.value = '';
   passwordInput.value = '';
   passwordInput.style.backgroundColor = '';
-  
+
   // Reset counter text
   counter.textContent = formatTime(CONFIG.available_time);
   score.textContent = '';
-  
+
   // Show team form, hide everything else
   teamFormSection.classList.remove('hidden');
   timeRemainingSection.classList.remove('visible');
   timeRemainingSection.classList.add('hidden');
   navSection.classList.remove('visible');
   navSection.classList.add('hidden');
-  
+
   // Show password input and submit button again
   span.classList.remove('hidden');
   passwordInput.classList.remove('hidden');
@@ -174,17 +174,17 @@ function showScoreboard() {
   const teamFormSection = document.getElementById('teamForm');
   const timeRemainingSection = document.getElementById('timeRemaining');
   const navSection = document.getElementById('navSection');
-  
+
   teamFormSection.classList.add('hidden');
   timeRemainingSection.classList.remove('visible');
   timeRemainingSection.classList.add('hidden');
   navSection.classList.add('hidden');
-  
+
   // Show scoreboard section
   const scoreboardSection = document.getElementById('scoreboardSection');
   scoreboardSection.classList.remove('hidden');
   scoreboardSection.classList.add('visible');
-  
+
   // Get all teams from localStorage
   const teams = [];
   for (let i = 0; i < localStorage.length; i++) {
@@ -192,14 +192,14 @@ function showScoreboard() {
     const teamData = JSON.parse(localStorage.getItem(key));
     teams.push(teamData);
   }
-  
+
   // Sort teams by points (highest first)
   teams.sort((a, b) => b.points - a.points);
-  
+
   // Display teams in the scoreboard
   const scoreboardList = document.getElementById('scoreboardList');
   scoreboardList.innerHTML = ''; // Clear existing content
-  
+
   teams.forEach((team, index) => {
     const teamItem = document.createElement('div');
     teamItem.className = 'scoreboard-item';
@@ -215,7 +215,7 @@ function showScoreboard() {
 function hideScoreboard() {
   const scoreboardSection = document.getElementById('scoreboardSection');
   const navSection = document.getElementById('navSection');
-  
+
   scoreboardSection.classList.remove('visible');
   scoreboardSection.classList.add('hidden');
   navSection.classList.remove('hidden');
@@ -235,8 +235,8 @@ const passwordButton = counterSection.querySelector('button')
 passwordButton.addEventListener('click', checkPassword)
 // function save
 
-const newGameButton = document.getElementById('newGame');
-newGameButton.addEventListener('click', resetGame);
+const nextTeamButton = document.getElementById('nextTeam');
+nextTeamButton.addEventListener('click', resetGame);
 replaceLogo();
 
 const backButton = document.getElementById('backButton');
