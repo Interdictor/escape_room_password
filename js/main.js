@@ -1,4 +1,6 @@
 import { CONFIG } from "../config/config.js";
+import { generateClues } from './game.js';
+
 
 let countdownInterval
 let timeRemaining = CONFIG.available_time;
@@ -87,7 +89,7 @@ function checkPassword() {
     points = timeRemaining;
     hideUI()
   } else {
-    timeRemaining -= CONFIG.penalty_time; // Deduct 60 seconds as penalty
+    timeRemaining -= CONFIG.wrong_password_penalty; // Deduct 60 seconds as penalty
 
     if (timeRemaining <= 0) {
       timeRemaining = 0
@@ -241,3 +243,5 @@ replaceLogo();
 
 const backButton = document.getElementById('backButton');
 backButton.addEventListener('click', hideScoreboard);
+
+generateClues()
