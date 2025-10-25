@@ -1,8 +1,8 @@
 html {
   --lg-grey: #444;
-  --lg-blue: #59a7e7;
-  --blue: #1e71d7;
-  --black: #171717;
+  --lg-blue: #9f7eed;
+  --blue: #7067ee;
+  --black: #080808;
 
   --width: 50vw;
 }
@@ -128,4 +128,12 @@ span {
 
 .medium-text {
   font-size: 0.8em;
+}
+
+.logo {
+  height: 100px;
+  padding-left: 30px;
+  margin-top: 20px;
+  width: auto;
+  object-fit: scale-down;
 }

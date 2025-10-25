@@ -1,6 +1,6 @@
 export const CONFIG = {
   // password: 'some_password',
-  logo_url: 'images/default_logo.svg',
+  logo_url: 'images/transparent_esicm.png',
   available_time: 60 * 25,
   wrong_password_penalty: 60 * 1,
   clue_use_penalty: 20,
