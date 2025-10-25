@@ -16,9 +16,6 @@
   <title>Scape Room Password</title>
 </head>
 <body>
-  <!-- <div>
-  </div> -->
-
   <header class="logo-container">
     <img id="main-logo" src="images/default_logo.svg" alt="logo">
   </header>
@@ -44,15 +41,19 @@
     <div id="clues"></div>
   </section>
 
-  <section id="navSection" class="hidden">
+  <section id="gameOverMenu" class="hidden">
+    <span id="turnOverMessage">lol</span>
+    <span id="teamPoints">0</span>
     <button id="nextTeam">NEXT TEAM</button>
-    <button id="scoreboard">SCOREBOARD</button>
+    <button id="scoreboardButton">SCOREBOARD</button>
   </section>
 
-  <section id="scoreboardSection" class="hidden">
+  <section id="scoreboard" class="hidden">
     <span>SCOREBOARD</span>
     <div id="scoreboardList"></div>
-    <button id="backButton">BACK</button>
+    <button id="scoreboardNextTeamTurnButton" class="mt-3">NEXT TEAM</button>
+    <button id="downloadCsvButton">DOWNLOAD SCORE</button>
+    <button id="resetGameDataButton" class="disabledButton">RESET GAME DATA</button>
   </section>
 
   <script type="module" src="config/config.js"></script>

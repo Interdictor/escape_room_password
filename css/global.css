@@ -1,7 +1,7 @@
 html {
   --lg-grey: #444;
-  --lg-red: #59a7e7;
-  --red: #1e71d7;
+  --lg-blue: #59a7e7;
+  --blue: #1e71d7;
   --black: #171717;
 
   --width: 50vw;
@@ -9,7 +9,7 @@ html {
 
 body {
   background-color: var(--black);
-  color: var(--red);
+  color: var(--blue);
   display: flex;
   flex-direction: column;
   /* font-family: "Orbitron", sans-serif; */
@@ -25,13 +25,14 @@ header {
   height: 10vh;
   /* background-color: #e75959; */
 }
+.disabledButton {
+  pointer-events: none;
+  color: var(--lg-grey);
+  opacity: 0.6;
+}
 
 .hidden {
   display: none;
-}
-
-.visible {
-  display: flex;
 }
 
 section {
@@ -48,7 +49,7 @@ section {
 }
 
 button {
-  background-color: var(--red);
+  background-color: var(--blue);
   color: var(--black);
   border: none;
   width: 100%;
@@ -60,15 +61,15 @@ button {
   box-sizing: border-box;
 
   &:hover {
-    background-color: var(--lg-red);
+    background-color: var(--lg-blue);
     color: var(--black);
   }
 }
 
 input {
   background-color: var(--black);
-  color: var(--red);
-  border: 2px solid var(--red);
+  color: var(--blue);
+  border: 2px solid var(--blue);
   font-size: 1em;
   width: 100%;
   /* padding: 0.2em 0.5em; */
@@ -87,4 +88,8 @@ span {
   margin: 0.1em 0;
   font-size: 2em;
   width: 100%;
+}
+
+.mt-3 {
+  margin-top: 1em;
 }
