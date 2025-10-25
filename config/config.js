@@ -2,14 +2,14 @@ export const CONFIG = {
   // password: 'some_password',
   logo_url: 'images/default_logo.svg',
   available_time: 60 * 25,
-  wrong_password_penalty: 60 * 24 + 58,
+  wrong_password_penalty: 60 * 1,
   clue_use_penalty: 20,
   success_message: 'CORRECT PASSWORD',
   failure_message: 'GAME OVER',
   passwords: [
-    'pepa', // case insensitive. add feature
+    'mylittlepassword',
   ],
-  clues: [ // five clues
+  clues: [
     {
       button_text: 'clue a',
       tooltip_text: 'some information related with a',
