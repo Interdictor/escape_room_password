@@ -21,29 +21,31 @@
   </header>
 
   <section id="teamForm">
-    <span>Enter your team name:</span>
+    <span class="medium-text">Enter your team name:</span>
     <input type="text" name="team_name" placeholder="Team Name" id="team-name-input">
     <button>CONFIRM</button>
   </section>
 
-  <!-- <div>
-    <span>enter your team name:</span>
-    <input type="text" name="team_name" id="team-name-input">
-    <button>confirm</button>
-  </div> -->
 
   <section id="timeRemaining" class="hidden">
-    <span>Time remaining:</span>
-    <span id="counter" class="counter"></span>
-    <input id="password-input" type="password" placeholder="enter the password...">
-    <button>SUBMIT</button>
-    <span id="score"></span>
-    <div id="clues"></div>
+    <div class="main-view">
+      <div class="empty-space"></div>
+
+      <div class="flex-1">
+        <span class="medium-text">Time remaining:</span>
+        <span id="counter" class="counter"></span>
+        <input id="password-input" type="password" placeholder="enter the password...">
+        <button>SUBMIT</button>
+      </div>
+
+      <div id="clues" class="clues-section"></div>
+    </div>
   </section>
 
   <section id="gameOverMenu" class="hidden">
-    <span id="turnOverMessage">lol</span>
-    <span id="teamPoints">0</span>
+    <span id="turnOverMessage">GAME OVER</span>
+    <span id="teamPoints" class="hidden">0</span>
+    <span id="timeLeft"></span>
     <button id="nextTeam">NEXT TEAM</button>
     <button id="scoreboardButton">SCOREBOARD</button>
   </section>

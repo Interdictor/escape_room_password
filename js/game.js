@@ -41,6 +41,12 @@ export function nextTeamTurn() {
 
   timeRemaining = CONFIG.available_time;
 
+  generateClues();
+  console.log('lmao');
+  const passwordInput = document.getElementById('password-input')
+  passwordInput.value = '';
+
+  console.log(passwordInput);
   const teamNameInput = document.getElementById('team-name-input');
   teamNameInput.value = '';
   showElement('teamForm');
@@ -49,11 +55,42 @@ export function nextTeamTurn() {
 
 export function generateClues() {
   const cluesContainer = document.getElementById('clues');
-  // CONFIG.clues.forEach((clue) => {
-  //   const clueElement = document.createElement('button')
-  //   clueElement.innerText = clue.button_text;
-  //   cluesContainer.appendChild(clueElement)
-  // });
+  cluesContainer.replaceChildren();
+  CONFIG.clues.forEach((clue) => {
+    const clueElement = document.createElement('div');
+    clueElement.classList.add('clue');
+    clueElement.textContent = clue.button_text;
+    clueElement.addEventListener('click', () => { applyCluePenalty(clueElement); showClue(clueElement, clue.tooltip_text)});
+    cluesContainer.appendChild(clueElement);
+  });
+}
+
+export function applyCluePenalty(clue) {
+  if(clue.dataset.shown) {
+    return
+  }
+
+  timeRemaining -= CONFIG.clue_use_penalty
+
+  if (timeRemaining <= 0) {
+    timeRemaining = 0
+    timeUp();
+    document.getElementById('turnOverMessage').textContent = CONFIG.failure_message;
+    showElement('gameOverMenu');
+  }
+}
+
+export function showClue(element, text) {
+  if (element.dataset.shown) {
+    return
+  }
+
+  console.log(element)
+  console.log(text)
+
+  element.dataset.shown = true;
+  element.textContent = text;
+  element.onclick = null;
 }
 
 export function confirmTeamName() {
@@ -71,7 +108,7 @@ export function confirmTeamName() {
 export function formatTime(seconds) {
   const mins = Math.floor(seconds / 60);
   const secs = seconds % 60;
-  return `${mins}:${secs.toString().padStart(2, '0')}`
+  return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`
 }
 
 export function serializeTimer() {
@@ -88,20 +125,26 @@ export function startCountdown() {
     counter.textContent = formatTime(timeRemaining)
 
     if (timeRemaining <= 0) {
-      clearInterval(countdownInterval);
-      const turnOverMessage = document.getElementById('turnOverMessage');
-      const teamPoints = document.getElementById('teamPoints');
-      turnOverMessage.textContent = CONFIG.failure_message;
-      teamPoints.textContent = 0;
-      points = timeRemaining;
+      timeUp();
     }
   }, 1000);
 }
 
+export function timeUp() {
+  clearInterval(countdownInterval);
+  convertScoreToTime(0);
+  const turnOverMessage = document.getElementById('turnOverMessage');
+  const teamPoints = document.getElementById('teamPoints');
+  turnOverMessage.textContent = CONFIG.failure_message;
+  teamPoints.textContent = 0;
+  points = timeRemaining;
+  showElement('gameOverMenu');
+}
+
 export function checkPassword() {
   const passwordInput = document.getElementById('password-input');
-  const password = passwordInput.value.trim()
-  const validPasswords = CONFIG.passwords;
+  const password = passwordInput.value.trim().toLowerCase();
+  const validPasswords = CONFIG.passwords.map(p => p.toLowerCase());
   const counter = document.getElementById('counter');
   const isValid = validPasswords.includes(password)
 
@@ -114,6 +157,7 @@ export function checkPassword() {
     turnOverMessage.textContent = CONFIG.success_message;
     teamPoints.textContent = points;
     saveTeam(teamName, points);
+    convertScoreToTime(points);
     showElement('gameOverMenu');
   } else {
     timeRemaining -= CONFIG.wrong_password_penalty;
@@ -121,7 +165,9 @@ export function checkPassword() {
       clearInterval(countdownInterval);
       timeRemaining = 0
       points = 0
+      convertScoreToTime(points);
       showElement('gameOverMenu');
+      setFailureMessage();
     } else {
       counter.textContent = formatTime(timeRemaining);
     }
@@ -213,4 +259,21 @@ export function resetGameData() {
   localStorage.clear()
   disableResetGameDataButton();
   resetGameDataEnabled = false;
+}
+
+export function setFailureMessage() {
+  document.getElementById('turnOverMessage').textContent = CONFIG.failure_message;
+}
+
+export function setSuccessMessage() {
+  document.getELementById('turnOverMessage').textContent = CONFIG.success_message;
+}
+
+export function convertScoreToTime(score) {
+  const minutes = Math.floor(score / 60);
+  const secondsLeft = score % 60;
+
+  const scoreAsTimestamp = `time left: ${minutes.toString().padStart(2, '0')}:${secondsLeft.toString().padStart(2, '0')}`;
+
+  document.getElementById('timeLeft').textContent = scoreAsTimestamp;
 }

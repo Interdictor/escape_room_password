@@ -93,3 +93,39 @@ span {
 .mt-3 {
   margin-top: 1em;
 }
+
+.empty-space {
+  flex: 1;
+}
+
+.clues-section {
+  flex: 1;
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+.main-view {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+}
+
+.clue {
+  font-size: 0.5em;;
+  margin: 10px 200px;
+  padding: 10px;
+  width: 250px;
+  height: 120px;
+  border: 2px solid var(--blue);
+}
+
+.clue:hover {
+  color: var(--lg-blue);
+  cursor: pointer;
+}
+
+.medium-text {
+  font-size: 0.8em;
+}
